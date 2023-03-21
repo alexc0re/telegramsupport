@@ -15,6 +15,7 @@ question_first_msg = cfg['question_type_ur_question_message']
 
 handler_button_new_question = cfg['button_new_question']
 handler_button_about_us = cfg['button_about_us']
+handler_check_zakaz = cfg['zakaz_track_button']
 
 
 async def client_start(message: types.Message):
@@ -53,6 +54,11 @@ async def client_newquestion(message: types.Message):
                 await message.answer("⚠ Ви *заблоковані* у боті!", parse_mode='Markdown')
                 return
             await message.answer(f"{aboutus}", disable_web_page_preview=True, parse_mode='Markdown')
+        elif message.text == handler_check_zakaz:
+            if db_profile_banned(message.from_user.id):
+                await message.answer("⚠ Ви *заблоковані* у боті!", parse_mode='Markdown')
+                return
+            await message.answer(f"Пітух ти ", disable_web_page_preview=True, parse_mode='Markdown')
 
     except Exception as e:
         cid = message.chat.id
