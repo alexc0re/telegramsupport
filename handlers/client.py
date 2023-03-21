@@ -45,18 +45,21 @@ async def client_newquestion(message: types.Message):
     try:
         if message.text == handler_button_new_question:
             if db_profile_banned(message.from_user.id):
-                await message.answer("⚠ Ви *заблоковані* у боті!", parse_mode='Markdown')
+                await message.answer("⚠ Вас *заблоковано* у боті!", parse_mode='Markdown')
                 return
             await message.answer(f"{question_first_msg}")
             await FSMQuestion.text.set()
+
+
         elif message.text == handler_button_about_us:
             if db_profile_banned(message.from_user.id):
-                await message.answer("⚠ Ви *заблоковані* у боті!", parse_mode='Markdown')
+                await message.answer("⚠ Вас *заблоковано* у боті!", parse_mode='Markdown')
                 return
             await message.answer(f"{aboutus}", disable_web_page_preview=True, parse_mode='Markdown')
+
         elif message.text == handler_check_zakaz:
             if db_profile_banned(message.from_user.id):
-                await message.answer("⚠ Ви *заблоковані* у боті!", parse_mode='Markdown')
+                await message.answer("⚠ Вас *заблоковано* у боті!", parse_mode='Markdown')
                 return
             await message.answer(f"Пітух ти ", disable_web_page_preview=True, parse_mode='Markdown')
 
